@@ -1,0 +1,32 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note right of browser: User submit a new note
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    server-->>browser: 302 Redirect (Location: /notes)
+    deactivate server
+
+    Note right of browser: Server sends HTTP 302, browser redirects, reloading 
+    page and this causes request external resources.
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: 200 OK (CSS file)
+    deactivate server
+    
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: 200 OK (JavaScript file)
+    deactivate server
+
+    Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: 200 OK (JSON data)
+    deactivate server
+
+    Note right of browser: The browser executes the callback function that renders the notes
