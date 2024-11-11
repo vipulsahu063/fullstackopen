@@ -108,9 +108,10 @@ const App = () => {
           setMessage({message: null, type: null})
         }, 5000)
       })
-      // .catch(error => {
-      //   console.error('Error adding contact:', error); // Error logging
-      // });
+      .catch(error => {
+        console.error(error.response.data.error); // Error logging
+        setMessage({message: error.response.data.error, type: 'error'})
+      });
   }
 };
 
