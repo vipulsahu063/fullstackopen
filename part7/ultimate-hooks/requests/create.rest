@@ -1,0 +1,13 @@
+POST http://localhost:3005/notes
+Content-Type: application/json
+
+# {
+#   "id": 3,
+#   "name": "smoky",
+#   "number": "839-028403"
+# }
+
+{
+  "id": 5,
+  "content": "High level language vs Low level language"
+}
